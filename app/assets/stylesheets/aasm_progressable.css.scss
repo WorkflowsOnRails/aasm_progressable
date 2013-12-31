@@ -1,0 +1,28 @@
+.state-indicator {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  font-size: 16px;
+
+  ol {
+    display: table-row;
+  }
+  li {
+    display: table-cell;
+    padding: 6px 16px;
+    border-right: 4px solid #fff;
+  }
+  .complete {
+    background: #6aa3d5;
+    color: #fff;
+  }
+  .active {
+    background: #357ebd;
+    color: #fff;
+  }
+  .incomplete {
+    background: #eae8ec;
+    color: #999;
+  }
+}
