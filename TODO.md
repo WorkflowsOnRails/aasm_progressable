@@ -1,3 +1,5 @@
+- Add a screenshot to the description in README.md to make this library's purpose clear.
+
 - Log an error when an unexpected state is encountered when rendering
   a progress indicator.
 
