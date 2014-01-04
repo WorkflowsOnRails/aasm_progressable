@@ -33,6 +33,22 @@ end
 In order to render the progress indicator, we need to add `helper AasmProgressable::Helper` to your ApplicationController. Then, in any detailed views for the order (such as orders#show), we can add `<%= render_state_indicator the_model_instance %>` to render an indicator for the state of the specified instance of the model. By default, this will render an ordered list (`ol`) with one element per state, with the elements corresponding to complete, current, and incomplete states being classed with `complete`, `active`, and `incomplete` respectively. You can add a ` *= require aasm_progressable` line to your application stylesheet to include some default styling for the indicator.
 
 
+Customizing and Localizing aasm_progressable
+--------------------------------------------
+
+aasm_progressable uses `AASM::Localizer#human_state_name` to convert AASM states to output text. By default, this method will replace underscores with spaces, and capitalize the first letter of the state name. However, it can also fetch state names from a locale key of the form `activerecord.attributes.<model-table-name>.<aasm-column-name>/<state-symbol>`. By default, `<aasm-column-name>` will be "aasm_state".
+
+As an example, if we wanted to display "Unconfirmed" as English name for the `:new` order state in the previous example, we could add the following to config/locales/en.yml:
+
+```yaml
+en:
+  activerecord:
+    attributes:
+      order:
+        aasm_state/new: "Unconfirmed"
+```
+
+
 Limitations
 ------------
 
