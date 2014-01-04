@@ -1,7 +1,9 @@
 aasm_progressable
 =================
 
-Rails helper to render the progress indicators for simple linear [AASM](https://github.com/aasm/aasm) workflows.
+Rails helper to render the progress indicators for simple linear [AASM](https://github.com/aasm/aasm) workflows. It allows users to see steps in a workflow they have completed, which step is in progress, and which steps have not been completed. See the following image for an example.
+
+![Example Screenshot](https://raw.github.com/WorkflowsOnRails/aasm_progressable/master/docs/sample-screenshot.png)
 
 
 Using aasm_progressable
