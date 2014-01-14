@@ -12,6 +12,10 @@
     display: table-cell;
     padding: 6px 16px;
     border-right: 4px solid #fff;
+
+    &:last-child {
+      border-right: none;
+    }
   }
   .complete {
     background: #6aa3d5;
