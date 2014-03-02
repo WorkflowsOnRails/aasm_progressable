@@ -8,12 +8,22 @@ module AasmProgressable
   # model state, such as the name to display, and if the state has
   # been completed yet or not.
   class State
+    attr_reader :id      # the internal ID for the state (as a string)
     attr_reader :name    # name displayed to the user
-    attr_reader :status  # :complete, :active, or :incomplete
 
-    def initialize(name, status)
+    def initialize(id, name, status_classes)
+      @id = id.to_s
       @name = name
-      @status = status
+      @status_classes = status_classes
+    end
+
+    # html_class may contain complete, previous, active, next, or incomplete.
+    def html_class
+      @status_classes.join(' ')
+    end
+
+    def is?(status_class)
+      @status_classes.include? status_class
     end
 
     # Returns an Array of State instances corresponding to the states
@@ -21,27 +31,21 @@ module AasmProgressable
     # given by the `aasm_state_order` declaration in the model.
     def self.create_all(object)
       localizer = AASM::Localizer.new
+      state_order = object.aasm_state_order
+      current_state = object.aasm.current_state
 
-      # Have we reached the current state yet?
-      #  Completed states precede the current state, so this is
-      #  the inverse of `is this state completed`
-      found_current_state = false
+      current_state_index = state_order.index(current_state)
 
-      object.aasm_state_order.map do |state|
-        is_current_state = state == object.aasm.current_state
-        found_current_state = true if is_current_state
-
-        status =
-          if is_current_state
-            :active
-          elsif found_current_state
-            :incomplete
-          else
-            :complete
-          end
+      object.aasm_state_order.each_with_index.map do |state, index|
+        status_classes = []
+        status_classes << :complete if index < current_state_index
+        status_classes << :previous if index == current_state_index - 1
+        status_classes << :active if index == current_state_index
+        status_classes << :next if index == current_state_index + 1
+        status_classes << :incomplete if index > current_state_index
 
         name = localizer.human_state_name(object.class, state)
-        State.new(name, status)
+        State.new(state, name, status_classes)
       end
     end
   end
