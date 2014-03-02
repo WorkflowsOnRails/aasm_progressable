@@ -52,10 +52,10 @@ module AasmProgressable
 
   module Helper
     # Renders a state indicator for a specified model instance.
-    def render_state_indicator(object)
+    def render_state_indicator(object, locals: {})
       states = State.create_all(object)
-      rendered = render partial: 'aasm_progressable/states/list',
-                        locals: {states: states}
+      locals = {states: states}.merge(locals)
+      rendered = render partial: 'aasm_progressable/states/list', locals: locals
       rendered.html_safe
     end
   end
