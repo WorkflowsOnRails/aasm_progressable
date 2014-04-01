@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'aasm_progressable'
-  s.version     = '1.0.0'
-  s.date        = '2013-12-29'
+  s.version     = '1.0.1'
+  s.date        = '2014-03-31'
   s.summary     = "AASM Progressable"
   s.description = "Progress indicators for linear AASM workflows"
   s.authors     = ["Brendan MacDonell"]
