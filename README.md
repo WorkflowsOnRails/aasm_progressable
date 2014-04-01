@@ -42,7 +42,7 @@ The default template for `aasm_progressable` can be customized to suit your need
 
 If you need additional template variables, you can pass local variables to the invocation of `render_state_indicator`. For instance, you can do the following to make the model instance available in a local variable:
 ```erb
-<%= render_state_indicator the_model_instance, locals: {object: the_model_instance } %>`
+<%= render_state_indicator the_model_instance, locals: {object: the_model_instance } %>
 ```
 
 Localization
