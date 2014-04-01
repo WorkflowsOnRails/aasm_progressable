@@ -38,7 +38,7 @@ In order to render the progress indicator, you need to add `helper AasmProgressa
 Custom Rendering
 ---------------------
 
-The default template for `aasm_progressable` can be customized to suit your needs. Run `rails g aasm_progressable:views` to copy the default template to app/views/aasm\_progressable/states/\_list.html.erb, and then customize it to your needs.
+The default template for `aasm_progressable` can be customized to suit your needs. Run `rails g aasm_progressable:views` to copy the default template to app/views/aasm\_progressable/states/\_list.html.erb, and edit it as needed.
 
 If you need additional template variables, you can pass local variables to the invocation of `render_state_indicator`. For instance, you can do the following to make the model instance available in a local variable:
 ```erb
