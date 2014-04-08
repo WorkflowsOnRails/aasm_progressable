@@ -1,7 +1,7 @@
 <div class="state-indicator">
   <ol>
     <% states.each_with_index do |state, index| %>
-    <li class="<%= state.status %>">
+    <li class="<%= state.html_class %>">
       <%= index + 1 %>. <%= state.name %>
     </li>
     <% end %>
