@@ -18,26 +18,26 @@ class StateKlass
 end
 
 describe StateKlass do
-  test = StateKlass.new
-
-  it "Initial" do
-    expect(test.have_not_completed? :one).to eq true
-    expect(test.have_not_completed? :two).to eq true
-
-    expect(test.have_started? :one).to eq true
-    expect(test.have_not_started? :two).to eq true
+  before :each do
+    @model = StateKlass.new
   end
 
-  test.transition #transition to state two
+  it "Initial" do
+    expect(@model.have_not_completed? :one).to eq true
+    expect(@model.have_not_completed? :two).to eq true
+
+    expect(@model.have_started? :one).to eq true
+    expect(@model.have_not_started? :two).to eq true
+  end
+
 
   it "After Transition" do
-    expect(test.have_completed? :one).to eq true
-    expect(test.have_not_completed? :two).to eq true
+    test.transition #transition to state two
+    expect(@model.have_completed? :one).to eq true
+    expect(@model.have_not_completed? :two).to eq true
 
-    expect(test.have_started? :one).to eq true
-    expect(test.have_started? :two).to eq true
+    expect(@model.have_started? :one).to eq true
+    expect(@model.have_started? :two).to eq true
   end
 
 end
-
-
